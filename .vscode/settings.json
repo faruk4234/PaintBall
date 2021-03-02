@@ -1,0 +1,4 @@
+{
+  "eslint.nodePath": "C:{path}",
+  "eslint.workingDirectories": ["./backend", "./mobile"]
+}

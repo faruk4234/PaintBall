@@ -1,11 +1,9 @@
 import React from 'react'
+
 import Router from './src/Router'
 
-const app = () => { 
-return(
-    
-    <   Router />
-)    
-}
+const App = () => (
+    <Router />
+)
 
-export default app
+export default App

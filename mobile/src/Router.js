@@ -1,12 +1,11 @@
 import React from 'react'
+
 import { Text, View } from 'react-native'
 
-const Router = () => {
-  return (
+const Router = () => (
     <View>
-      <Text> texssInComponent </Text>
+        <Text> texssInComponent </Text>
     </View>
-  )
-}
+)
 
 export default Router
