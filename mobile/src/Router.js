@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Text, View } from 'react-native'
 
-export default class Router extends Component {
-    render() {
-        return (
-            <View>
-       <Text> texssInComponent </Text>
-            </View>
-        )
-    }
+const Router = () => {
+  return (
+    <View>
+      <Text> texssInComponent </Text>
+    </View>
+  )
 }
+
+export default Router
