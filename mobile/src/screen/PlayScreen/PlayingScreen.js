@@ -1,16 +1,38 @@
 import React from 'react'
 
-import { View, Text, StyleSheet } from 'react-native'
+import {
+    Animated, View, StyleSheet, PanResponder, Text
+} from 'react-native'
 
-const PlayingScreen = () => (
-    <View style={stlyes.container}>
-        <View style={stlyes.childContainer}>
-            <Text>
-                TRYsssssssssssss
-            </Text>
+const PlayingScreen = () => {
+    const pan = React.useRef(new Animated.ValueXY()).current
+    const panResponder = React.useRef(
+        PanResponder.create({
+            onMoveShouldSetPanResponder: () => true,
+            onPanResponderMove: Animated.event([
+                null,
+                { dx: pan.x, dy: pan.y }
+            ]),
+            onPanResponderRelease: () => {
+                Animated.spring(pan, { toValue: { x: 100, y: 100 } }).start()
+            }
+        })
+    ).current
+
+    return (
+        <View style={stlyes.container}>
+            <View style={stlyes.childContainer}>
+                <Animated.View
+                    style={{
+                        transform: [{ translateX: pan.x }, { translateY: pan.y }]
+                    }}
+                    {...panResponder.panHandlers}>
+                    <View style={stlyes.box} />
+                </Animated.View>
+            </View>
         </View>
-    </View>
-)
+    )
+}
 
 const stlyes = StyleSheet.create({
     container: {
@@ -27,6 +49,12 @@ const stlyes = StyleSheet.create({
         height: '95%',
         width: '98%',
         left: '1%'
+    },
+    box: {
+        height: 15,
+        width: 15,
+        backgroundColor: 'blue',
+        borderRadius: 50
     }
 })
 
