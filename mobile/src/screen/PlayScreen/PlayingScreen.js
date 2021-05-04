@@ -11,12 +11,13 @@ const PlayingScreen = () => {
 
     const settingArea = (clickAreaColor) => {
         if (clickAreaColor === 'blue') {
-            if (blue < 20) {
+            if (red > 17) {
                 // eslint-disable-next-line no-unused-expressions
                 setBlue(blue + 2),
                 setRed(red - 2)
             }
-        } else {
+        } else if (blue > 17) {
+            // eslint-disable-next-line no-unused-expressions
             setBlue(blue - 2),
             setRed(red + 2)
         }
@@ -24,13 +25,17 @@ const PlayingScreen = () => {
 
     return (
         <>
-            <TouchableOpacity
-                onPress={() => settingArea('red')}
-                style={{ ...stlyes.childContainer, flex: red }} />
+            <View style={stlyes.container}>
+                <TouchableOpacity
+                    onPressIn={{}}
+                    activeOpacity={{ backgroundColor: 'green' }}
+                    onPress={() => settingArea('red')}
+                    style={{ ...stlyes.childContainer, flex: red }} />
 
-            <TouchableOpacity
-                onPress={() => settingArea('blue')}
-                style={{ ...stlyes.childContainer2, flex: blue }} />
+                <TouchableOpacity
+                    onPress={() => settingArea('blue')}
+                    style={{ ...stlyes.childContainer2, flex: blue }} />
+            </View>
         </>
 
     )
