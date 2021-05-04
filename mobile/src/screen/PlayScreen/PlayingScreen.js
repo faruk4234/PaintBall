@@ -1,60 +1,58 @@
 import React from 'react'
 
 import {
-    Animated, View, StyleSheet, PanResponder, Text
+    View, StyleSheet,
+    TouchableOpacity
 } from 'react-native'
 
 const PlayingScreen = () => {
-    const pan = React.useRef(new Animated.ValueXY()).current
-    const panResponder = React.useRef(
-        PanResponder.create({
-            onMoveShouldSetPanResponder: () => true,
-            onPanResponderMove: Animated.event([
-                null,
-                { dx: pan.x, dy: pan.y }
-            ]),
-            onPanResponderRelease: () => {
-                Animated.spring(pan, { toValue: { x: 100, y: 100 } }).start()
+    const [blue, setBlue] = React.useState(50)
+    const [red, setRed] = React.useState(50)
+
+    const settingArea = (clickAreaColor) => {
+        if (clickAreaColor === 'blue') {
+            if (blue < 20) {
+                // eslint-disable-next-line no-unused-expressions
+                setBlue(blue + 2),
+                setRed(red - 2)
             }
-        })
-    ).current
+        } else {
+            setBlue(blue - 2),
+            setRed(red + 2)
+        }
+    }
 
     return (
-        <View style={stlyes.container}>
-            <View style={stlyes.childContainer}>
-                <Animated.View
-                    style={{
-                        transform: [{ translateX: pan.x }, { translateY: pan.y }]
-                    }}
-                    {...panResponder.panHandlers}>
-                    <View style={stlyes.box} />
-                </Animated.View>
-            </View>
-        </View>
+        <>
+            <TouchableOpacity
+                onPress={() => settingArea('red')}
+                style={{ ...stlyes.childContainer, flex: red }} />
+
+            <TouchableOpacity
+                onPress={() => settingArea('blue')}
+                style={{ ...stlyes.childContainer2, flex: blue }} />
+        </>
+
     )
 }
 
 const stlyes = StyleSheet.create({
     container: {
-        backgroundColor: 'blue',
         flex: 1
     },
     childContainer: {
+        width: '100%',
+        height: '50%',
         borderTopWidth: 1,
         borderBottomWidth: 1,
-        bottom: '3%',
-        top: '3%',
-        backgroundColor: '#76D7C4',
-        alignItems: 'center',
-        height: '95%',
-        width: '98%',
-        left: '1%'
+        backgroundColor: 'red'
     },
-    box: {
-        height: 15,
-        width: 15,
-        backgroundColor: 'blue',
-        borderRadius: 50
+    childContainer2: {
+        width: '100%',
+        height: '50%',
+        borderTopWidth: 1,
+        borderBottomWidth: 1,
+        backgroundColor: 'aqua'
     }
 })
 

@@ -1,6 +1,8 @@
 import React from 'react'
 
-import { View, StyleSheet } from 'react-native'
+import {
+    View, StyleSheet, TouchableOpacity, Text
+} from 'react-native'
 import { IconButton, Colors } from 'react-native-paper'
 
 import Input from '../../components/Input'
@@ -24,6 +26,11 @@ const LoginScreen = ({ navigation }) => {
                 color={Colors.blue700}
                 size={60}
                 onPress={() => { fight(text) }} />
+
+            <TouchableOpacity>
+
+                <Text>sadsad</Text>
+            </TouchableOpacity>
         </View>
     )
 }
